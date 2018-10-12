@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<title>苹果首页</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.clearFix:after,
+		.clearFix:before{
+			content:' ';
+			display:table;
+		}
+		.clearFix:after{
+			clear:both;
+		}
+		.hr{
+			width:100%;
+			height:1px;
+			background:#999;
+		}
+		/*导航栏*/
+		header{
+			width:100%;
+			background:rgba(0,0,0,0.72);
+			height:2.5rem;
+			position:fixed;
+			top:0;
+		}
+		nav{
+			width:80%;
+			margin-left:10%;
+		}
+		nav ul{
+			list-style:none;
+			text-align:center;
+		}
+		nav ul li{
+			box-sizing:border-box;
+			display:inline-block;
+			margin:0 0.9rem;
+			vertical-align:middle;
+			white-space:nowrap;
+			text-overflow:ellipsis;
+		}
+ 		nav li a{
+			color:#fff;
+			line-height:2.5rem;
+			text-decoration:none;
+			outline:none;
+			cursor:pointer;
+			font-size:0.8rem;
+		}
+		nav li a:hover{
+			color:#888;
+		}
+	 	.navMore,.appleIcon,.searchIcon,.shopBagIcon{
+			width:2.5rem;
+			height:2.5rem;
+		}
+	 	nav li img{
+	 		width:100%;
+	 	}
+		/*小屏幕导航栏*/
+		#smallNavMore{
+			background:rgba(0,0,0,0.9);
+			color:#fff;
+			display:none;
+		}
+		.smallSearch{
+			text-align:center;
+		}
+		#smallNavMore li{
+			list-style:none;
+			padding:0.31rem 5rem;
+		}
+		#smallNavMore hr{
+			width:80%;
+			margin:0 auto;
+		}
+		#smallNavMore a{
+			color:#fff;
+			text-decoration:none;
+		}
+		#smallNavMore a:hover{
+			color:#888;
+		}
+		/*导航栏购物袋*/
+		#shopBag{
+			width:18.75rem;
+			height:auto;
+			border:1px solid #999;
+			background:#fff;
+			position:absolute;
+			top:2.6rem;
+			right:10%;
+			display:none;
+		}
+		#shopBag .shopBag-news{
+			text-align: center;
+		}
+		#shopBag .shopBag-news span{
+			line-height:6rem;
+			color:#888;
+		}
+		#shopBag ul{
+			list-style:none;
+		}
+		#shopBag li a{
+			font-size:1rem;
+			letter-spacing:1px;
+			vertical-align:middle;
+			color:#2fa8e9;
+			text-decoration:none;
+		}
+		#shopBag li a:hover{
+			text-decoration:underline;
+		}
+		#shopBag li img{
+			vertical-align:middle;
+			margin:1px 1rem;
+		}
+		/*导航栏搜索框*/
+		#search{
+			width:60%;
+			height:2.5rem;
+			background:rgba(0,0,0,0.9);
+			position:absolute;
+			top:0;
+			left:20%;
+			z-index:1;
+			display:none;
+		}
+		#search div:first-child{
+			padding:0.31rem 5%;
+			float:left;
+		}
+		#search div:last-child{
+			padding:0.31rem 5%;
+			float:left;
+			cursor:pointer;
+		}
+		#search input{
+			width:31.25rem;
+			height:2rem;
+			padding:1px 0;
+			float:left;
+		}
+		/*大图1、2*/
+		.bigImage-section1,.bigImage-section2{
+			height:43.75rem;
+			text-align:center;		
+		}
+		.bigImage-section1{
+			background:#fafafa;
+			margin-top:2.5rem;
+		}
+		.bigImage-section2{
+			background:#f5f5f5;
+			margin-top:0.625rem;
+		}		
+		.bigImage-text{
+			width:60%;
+			height:18.75rem;
+			margin:0 auto;
+			display:inline-block;
+		}
+		.bigImage-text h1{
+			font-size:3.125rem;			
+		}
+		.bigImage-text h3{
+			font-size:1.56rem;
+			font-family:serif;
+		}
+		.bigImage-text span{
+			color:blue;
+			cursor: pointer;
+			padding:1.25rem;
+			line-height:3.125rem;
+		}
+		.bigImage-text a{
+			color:#2fa8e9;
+			font-size:1.125rem;
+			text-decoration:none;
+		}
+		.bigImage-text a:hover{
+			text-decoration:underline;
+		}
+		.bigImage-text h1{
+			margin-top:4.375rem;
+		}
+		.bigImage-preview{
+			height:25rem;
+		}
+		.bigImage-preview img{
+			max-width:100%;
+		}
+		/*大图3*/
+		.bigImage-section3{
+			background:#131218;
+			margin-top:0.625rem;
+		}
+		.bigImage-preview3{
+			background:#f2f2f2;
+			width:100%;
+			height:43.75rem;
+			margin-top:0.625rem;
+			text-align: center;	
+			background:url(./images/macbook_pro_performance_large.jpg);
+			background-repeat:no-repeat;
+			background-position:50% 50%;
+			-webkit-background-size:100% 50%;
+			-moz-background-size:100% 50%;
+			-o-background-size:100% 50%;
+			background-size:100% 50%;
+			/*border:1px solid red;*/
+		}
+		.bigImage-text3{
+			color:#fff;
+			width:60%;
+			height:18.75rem;
+			margin:0 auto;
+			display:inline-block;
+		}
+		.bigImage-text3 h1{
+			font-size:3.125rem;
+		}
+		.bigImage-text3 h3{
+			font-family:inherit;
+			font-size:1.5625rem;
+		}
+		.bigImage-text3 span a{
+			color:#fff;
+			font-size:1.125rem;
+			text-decoration:none;
+			padding:1.25rem;
+		}
+		.bigImage-text3 h1{
+			margin-top:4.375rem;
+		}
+		.bigImage-text3 span a:hover{
+			text-decoration:underline;
+		}
+		/*小图*/
+		.left-smallImage1,.left-smallImage2,.left-smallImage3,.right-smallImage1,.right-smallImage2,.right-smallImage3{
+			box-sizing:border-box;
+			height:31.25rem;
+			border:6px solid #fff;
+			width:50%;
+			float:left;	
+		}
+		.left-smallImage1{
+			background:url(./images/shop_for_college_large.jpg);
+			background-repeat:no-repeat;
+			background-position: 50%;
+			background-size:100% 100%;
+		}
+		.right-smallImage1{
+			background:url(./images/behind_the_mac_daito_large.jpg);
+			background-repeat:no-repeat;
+			background-position: 50%;
+		}
+		.left-smallImage2{
+			background:url(./images/iphone_x_a11_large.jpg);
+			background-repeat:no-repeat;
+			background-position: 50% 100%;
+		}
+		.right-smallImage2{
+			background:#f9f0eb url(./images/iphone_8_large.jpg);
+			background-repeat:no-repeat;
+			background-position: 50% 100%;
+			background-size:50% 90%;
+		}
+		.left-smallImage3{
+			background:url(./images/trade_up_large.jpg);
+			background-repeat:no-repeat;
+			background-position: 50%;
+		}
+		.right-smallImage3{
+			background:#3d3d3d url(./images/three_rings_large.jpg);
+			background-repeat:no-repeat;
+			background-position: 50% 100%;
+			background-size:50% 70%;
+		}
+		/*小图文字*/
+		.left-text1,.left-text2,.left-text3,.right-text3 span{
+			font-size:1.25rem;
+		}
+		.left-text1,.left-text2,.left-text3,.right-text3{
+			max-width:60%;
+			margin:auto;
+			margin-top:1.875rem;
+			text-align:center;
+			letter-spacing:2px;
+		}
+
+		.right-text1 h1{
+			font-size:1.875rem;
+			letter-spacing:3px;
+			padding:3px;
+		}
+		.right-text1 a{
+			text-decoration:none;
+			font-size:1.25rem;
+			color:#fff;
+			letter-spacing:2px;
+		}
+		.right-text1 a:hover{
+			text-decoration:underline;
+		}
+		.right-text1{
+			max-width:60%;
+			margin:auto;
+			margin-top:25rem;
+			text-align:center;
+			color:#fff;
+		}
+
+		.right-text2 h1{
+			font-size:1.875rem;
+		}
+		.right-text2 span{
+			color:#333;
+			font-size:1.25rem;
+			text-decoration:none;
+			line-height:1.875rem;
+		}
+		.right-text2 a{
+			font-size:1.25rem;
+			color:#6868db;
+			text-decoration:none;
+		}
+		.right-text2 a:hover{
+			text-decoration:underline;
+		}
+		.right-text2{
+			margin-top:1.5625rem;
+			text-align:center;
+			letter-spacing:1px;
+		}
+		/*页尾*/
+		.foot{
+			display:inline-block;
+			margin-top:5px;
+			width:100%;
+			background:#f2f2f2;
+		}
+		.list{
+			height:18.75rem;
+			margin:0.625rem 0;
+			text-align:center;
+		}
+		#list-one,#list-two,#list-three,#list-four,#list-five{
+			float:left;
+			width:20%;
+			margin-top:0.625rem;
+		}
+		.list .footNav{
+			font-size:0.8125rem;
+			color:#222;
+			font-weight:bold;
+			padding:0.3125rem;
+		}
+		.list li{
+			list-style:none;
+		}
+		.list a{
+			text-decoration:none;
+			font-size:0.6875rem;
+			color:#666;
+		}
+		.list a:hover{
+			text-decoration:underline;
+			color:#333;
+		}
+		/*页尾更多*/
+		.more{
+			width:100%;
+			line-height:1.875rem;
+		}
+		.more span{
+			font-size:0.75rem;
+			color:#888;
+			padding-left:0.3125rem;
+		}
+		.more-link{
+			float:right;
+			text-align:right;
+			font-size:0.75rem;
+			color:#666;
+			letter-spacing:1px;
+			height:0.3125rem;
+		}
+		.more a{
+			text-decoration:none;
+			color:blue；
+		}
+		.more a:hover{
+			text-decoration:underline;
+		}
+		.know-more a{
+			font-size:0.75rem;
+			color:#666;
+		}
+		.know-more a:hover{
+			color:#333;
+		}
+
+		/*媒体查询*/
+		@media only screen and (min-width:53.121rem){
+			.navMore{
+				display:none;
+			}
+		}
+		@media only screen and (max-width:55rem){
+			.left-smallImage1,.left-smallImage2,.left-smallImage3,.right-smallImage1,.right-smallImage2,.right-smallImage3{	
+					width:100%;
+			}
+		}
+		@media only screen and (min-width:46.875rem) and (max-width:53.125rem){
+			.navMore{
+				display:none;
+			}
+			.searchIcon{
+				display:none;
+			}
+		}
+		@media only screen and (max-width:46.875rem){
+			.lirow,.searchIcon{
+				display:none;
+			}
+			.shopBagIcon{
+				float:right;
+				margin:0;
+			}
+			.appleIcon{
+				margin:0 auto;
+				text-align:center;
+				vertical-align:middle;
+			}
+			.navMore{
+				display:block;
+				float:left;
+			}
+		}
+		/*页脚导航栏媒体查询*/
+		@media only screen and (max-width:32.5rem){
+			#list-one,#list-two,#list-three,#list-four,#list-five{
+				width:100%;
+				display:inline-block;
+			}
+			.list ul{
+				display:none;
+			}
+			.list h3{
+				cursor:pointer;
+			}
+		}
+	</style>
+	<script type="text/javascript">
+			var hide=true;
+			function showShopBag(){
+				var shopBag=document.getElementById("shopBag");
+				if(hide)
+					{
+						shopBag.style.display="block";
+						hide=false;
+					}
+				else
+					{
+						shopBag.style.display="none";
+						hide=true;
+					}
+			}
+			function showSearch(){
+				var search=document.getElementById("search");
+				search.style.display="block";
+				var shopBag=document.getElementById("shopBag");
+				shopBag.style.display="none";
+			}
+			function closeSearch(){
+				var search=document.getElementById("search");
+				search.style.display="none";
+			}
+			// 页脚导航栏显示隐藏
+			var hide=true;
+			function footN1(){
+				var alinkOne=document.getElementById("alink-one");
+				if(hide)
+					{
+						alinkOne.style.display="block";
+						hide=false;
+					}
+					else
+					{
+						alinkOne.style.display="none";
+						hide=true;
+					}
+			}
+			function footN2(){
+				var alinkTwo=document.getElementById("alink-two");
+				if(hide)
+				{
+					alinkTwo.style.display="block";
+					hide=false;
+				}
+				else
+				{
+					alinkTwo.style.display="none";
+					hide=true;
+				}
+			}
+			function footN3(){
+				var alinkThree=document.getElementById("alink-three");
+				if(hide)
+				{
+					alinkThree.style.display="block";
+					hide=false;
+				}
+				else
+				{
+					alinkThree.style.display="none";
+					hide=true;
+				}
+			}
+			function footN3_2(){
+				var alinkThree2=document.getElementById("alink-three2");
+				if(hide)
+				{
+					alinkThree2.style.display="block";
+					hide=false;	
+				}
+				else
+				{
+					alinkThree2.style.display="none";
+					hide=true;
+				}
+
+			}
+			function footN4(){
+				var alinkFour=document.getElementById("alink-four");
+				if(hide)
+				{
+					alinkFour.style.display="block";
+					hide=false;
+				}
+				else
+				{
+					alinkFour.style.display="none";
+					hide=true;
+				}
+			}
+			function footN4_2(){
+				var alinkFour2=document.getElementById("alink-four2");
+				if(hide)
+				{
+					alinkFour2.style.display="block";
+					hide=false;
+				}
+				else
+				{
+					alinkFour2.style.display="none";
+					hide=true;
+				}
+			}
+			function footN5(){
+				var alinkFive=document.getElementById("alink-five");
+				if(hide)
+				{
+					alinkFive.style.display="block";
+					hide=false;
+				}
+				else
+				{
+					alinkFive.style.display="none";
+					hide=true;
+				}
+			}
+			// 小屏幕导航
+			var smallhide=true;
+			function openSmallNav(){
+				var SNM=document.getElementById("smallNavMore");
+				var shopBag=document.getElementById("shopBag");
+				if(smallhide)
+				{
+					SNM.style.display="block";
+					shopBag.style.display="none";
+					smallhide=false;
+				}
+				else
+				{
+					SNM.style.display="none";
+					smallhide=true;
+				}
+			}
+	</script>
+</head>
+<body>
+		<header>
+			<nav>
+				<ul>
+					<li class="navMore">
+						<a href="#" onclick="openSmallNav()"><img src="./images/nav-more.png" alt="更多"></a>
+					</li>
+					<li class="appleIcon"><a href="#">
+						<img src="./images/apple-icon.png" alt="苹果图标"></a>
+					</li>
+					<li class="lirow"><a href="#">Mac</a></li>
+					<li class="lirow"><a href="#">iPad</a></li>
+					<li class="lirow"><a href="#">iPhone</a></li>
+					<li class="lirow"><a href="#">Watch</a></li>
+					<li class="lirow"><a href="#">Music</a></li>
+					<li class="lirow"><a href="#">技术支持</a></li>
+					<li class="searchIcon" onclick="showSearch()">
+						<a href="#"><img src="./images/nav-search.png"></a>
+					</li>		
+					<li class="shopBagIcon" onclick="showShopBag()">
+						<a href="#"><img src="./images/shopping-icon.png"></a>
+					</li>	
+				</ul>
+			</nav>
+			<div id="search">
+				<div class="nav-iconWidth">
+					<img src="./images/nav-search.png" alt="搜索">
+				</div>
+				<div>
+					<input type="text" name="search" placeholder="搜索apple.com">
+				</div>
+				<div class="nav-iconWidth" onclick="closeSearch()">
+					<img src="./images/close.png" alt="关闭">
+				</div>
+			</div>
+			<div id="shopBag">
+				<ul>
+					<div class="shopBag-news">
+						<span>你的购物袋是空的</span>
+					</div>
+					<div class="hr"></div>
+					<li><img src="./images/shopping-bag.png"><a href="#">购物袋</a></li>
+					<div class="hr"></div>
+					<li><img src="./images/collect.png"><a href="#">收藏</a></li>
+					<div class="hr"></div>
+					<li><img src="./images/order.png"><a href="#">订单</a></li>
+					<div class="hr"></div>
+					<li><img src="./images/set.png"><a href="#">账户</a></li>
+					<div class="hr"></div>
+					<li><img src="./images/user.png"><a href="#">登陆</a></li>
+				</ul>
+			</div>
+			<div id="smallNavMore">
+				<div class="smallSearch">
+					<input type="text" placeholder="搜索apple.com" list="anymore" size="90%">
+					<datalist id="anymore">
+						<option>查找零售店</option>
+						<option>配件</option>
+						<option>iPod</option>
+						<option>iOS</option>
+					</datalist>
+				</div>
+				<ul>
+					<li><a href="#">Mac</a></li><hr>
+					<li><a href="#">iPad</a></li><hr>
+					<li><a href="#">iPhone</a></li><hr>
+					<li><a href="#">Watch</a></li><hr>
+					<li><a href="#">Music</a></li><hr>
+					<li><a href="#">技术支持</a></li>
+				</ul>
+			</div>
+	</header>
+	<div class="content">
+		<section class="bigImage-section1">
+			<div class="bigImage-text">
+				<h1>iPhone X</h1>
+				<h3>hello,未来。</h3>
+				<span><a href="#">进一步了解＞</a></span>
+				<span><a href="#">购买＞</a></span>		
+			</div>
+			<div class="bigImage-preview">
+				<picture>
+					<!-- <source srcset="./images/iphone_x_large.jpg" 1068w> -->
+					<img src="./images/iphone_x_large.jpg" alt="iphoneX">
+				</picture>
+			</div>
+		</section>
+		<section class="bigImage-section2"> 
+				<div class="bigImage-text">
+				<h1>iPad</h1>
+				<h3>这个电脑,拿掉了电脑的条条框框。</h3>
+				<span><a href="#">进一步了解＞</a></span>
+				<span><a href="#">购买＞</a></span>
+			</div>
+			<div class="bigImage-preview">
+				<picture>
+					<img src="./images/ipad_large.jpg" alt="ipad">
+				</picture>
+			</div>
+		</section>
+		<section class="bigImage-section3"> 		
+			<div class="bigImage-preview3">
+				<div class="bigImage-text3">
+					<h1>MacBook Pro</h1>
+					<h3>更强劲,更专业的强劲。</h3>
+					<span><a href="#">进一步了解＞</a></span>
+					<span><a href="#">购买＞</a></span>
+				</div>
+			</div>
+		</section>
+		<section class="smallImage-section">
+			<div class="smallImage-preview-one">
+				<div class="left-smallImage1">
+					<div class="left-text1">
+						<h1>暑期热点呈献</h1>
+						<span>为高校生活购买Mac或iPad Pro,Beats耳机搭配其中。</span>
+					</div>
+				</div>
+				<div class="right-smallImage1">
+					<div class="right-text1">
+						<h1>敬Mac 背后的你</h1>
+						<span><a href="#">观看影片</a></span>
+						<span><a href="#">探索Mac＞</a></span>
+					</div>
+				</div>
+			</div>
+			<div class="smallImage-preview-two">
+				<div class="left-smallImage2">
+					<div class="left-text2">
+						<h1>iOS 12</h1>
+						<span>力量与你同在</span>
+					</div>
+				</div>
+				<div class="right-smallImage2">
+					<div class="right-text2">
+						<h1>iPhone 8</h1>
+						<span>新一代 iPhone</span><br>
+						<span><a href="#">进一步了解＞</a></span>
+						<span><a href="#">购买 ＞</a></span>
+					</div>
+				</div>
+			</div>
+			<div class="smallImage-preview-three">
+				<div class="left-smallImage3">
+					<div class="left-text3">
+						<h1>年年焕新计划</h1>
+						<span>升级到新款 iPhone,轻轻松松。</span>
+					</div>
+				</div>
+				<div class="right-smallImage3">
+					<div class="right-text3">
+						<h1>iTunes</h1>
+						<span>你的私人音乐游乐园</span>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<footer>
+		<section class="foot">
+			<div class="list">
+					<div id="list-one">
+						<h3 class="footNav" onclick="footN1()">选购及了解</h3>
+						<ul id="alink-one">
+							<li><a href="#">Mac</a></li>
+							<li><a href="#">iPad</a></li>
+							<li><a href="#">iPhone</a></li>
+							<li><a href="#">Watch</a></li>
+							<li><a href="#">Music</a></li>
+							<li><a href="#">iTunes</a></li>
+							<li><a href="#">ipod Touch</a></li>
+							<li><a href="#">配件</a></li>
+							<li><a href="#">App Stote充值卡</a></li>
+						</ul>
+					</div>
+					<div id="list-two">
+						<h3 class="footNav" onclick="footN2()">Apple Stote商店</h3>
+						<ul id="alink-two">
+							<li><a href="#">查找零售店</a></li>
+							<li><a href="#">Genius Bar 天才吧</a></li>
+							<li><a href="#">Today at Apple</a></li>
+							<li><a href="#">Apple 夏令营</a></li>
+							<li><a href="#">Field Trip 课外活动</a></li>
+							<li><a href="#">Apple Store App</a></li>
+							<li><a href="#">翻新和优惠</a></li>
+							<li><a href="#">分期付款</a></li>
+							<li><a href="#">Apple GiveBack 回馈计划</a></li>
+							<li><a href="#">订单状态</a></li>
+							<li><a href="#">选购帮助</a></li>
+						</ul>
+					</div>
+					<div id="list-three">
+						<h3 class="footNav" onclick="footN3()">教育应用</h3>
+						<ul id="alink-three">
+							<li><a href="#">Apple与教育</a></li>
+							<li><a href="#">高校师生选购</a></li>
+						</ul>
+						<br>
+						<h3 class="footNav" onclick="footN3_2()">商务应用</h3>
+						<ul id="alink-three2">
+							<li><a href="#">Apple与商务</a></li>
+							<li><a href="#">商务选购</a></li>
+						</ul>
+					</div>
+					<div id="list-four">
+						<h3 class="footNav" onclick="footN4()">账户</h3>
+						<ul id="alink-four">
+							<li><a href="#">管理你的Apple ID</a></li>
+							<li><a href="#">Apple Store账户</a></li>
+							<li><a href="#">iClound.com</a></li>
+						</ul>
+						<br>
+						<h3 class="footNav" onclick="footN4_2()">Apple价值观</h3>
+						<ul id="alink-four2">
+							<li><a href="#">辅助功能</a></li>
+							<li><a href="#">环境责任</a></li>
+							<li><a href="#">隐私</a></li>
+							<li><a href="#">供应商责任</a></li>
+						</ul>
+					</div>
+					<div id="list-five" onclick="footN5()">
+						<h3 class="footNav">关于Apple</h3>
+						<ul id="alink-five">
+							<li><a href="#">Newsroom</a></li>
+							<li><a href="#">Apple 管理器</a></li>
+							<li><a href="#">工作机会</a></li>
+							<li><a href="#">创造就业</a></li>
+							<li><a href="#">活动</a></li>
+							<li><a href="#">联系Apple</a></li>
+						</ul>
+					</div>
+			</div>
+			<div class="more">
+				<span>
+					更多选购方式：前往 <a href="#">Apple Store</a> 零售店，致电 400-666-8800 或查找在你附近的<a href=#>授权经销商</a>。
+				</span>
+				<div class="hr"></div>
+					<span>Copyright © 2018 Apple Inc. 保留所有权利。</span>
+					<span class="know-more">
+						<a href="#">隐私政策</a>|
+						<a href="#">使用条款</a>|
+						<a href="#">销售政策</a>| 
+						<a href="#">法律信息</a>|
+						<a href="#">网站地图</a>
+					</span>
+				<div class="more-link">
+						<img src="./images/16.png"> <a href="#">中国</a>		
+				</div>
+				<br>
+				<span>京公安网安备 11010502008968 京ICP备10214630</span>
+			</div>
+		</section>
+	</footer>
+</body>
+</html>
